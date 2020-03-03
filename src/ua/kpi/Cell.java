@@ -3,17 +3,15 @@ package ua.kpi;
 public class Cell implements Cloneable {
 
     private Ball ball;
-//    private Integer index;
 
     public Cell() {
     }
 
-    public Cell(Ball ball) {
+    Cell(Ball ball) {
         this.ball = ball;
-//        this.index = index;
     }
 
-    public Ball getBall() {
+    Ball getBall() {
         return ball;
     }
 
@@ -21,25 +19,24 @@ public class Cell implements Cloneable {
         this.ball = ball;
     }
 
-//    public Integer getIndex() {
-//        return index;
-//    }
 
-//    public void setIndex(Integer index) {
-//        this.index = index;
-//    }
-
-    public boolean isEmpty() {
+    boolean isEmpty() {
         return ball == null;
     }
 
 
     @Override
     public String toString() {
-        String str = "Cell{";
+       String str ="";/*= "Cell{";
         if (ball != null) str += "ball=" + ball.toString();
-//        str += ", index=" + index +
-                str += '}';
+                str += '}';*/
+        if( ball==null)
+            str ="_";
+            else if( ball.getColor().equals(Color.WHITE))
+            str="O";
+        else if (ball.getColor().equals(Color.BLACK))
+            str="*";
+
         return str;
     }
 

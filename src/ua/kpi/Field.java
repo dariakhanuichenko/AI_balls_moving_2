@@ -51,18 +51,6 @@ public class Field implements Cloneable {
         return cells;
     }
 
-    private boolean deadEnd(List<Cell> cells, Integer i, Integer counter) {
-
-//        System.out.println("------deadend--------");
-//        cells.forEach(System.out::println);
-        for (int j = 0; j < cells.size(); j++) {
-            if (j == i) continue;
-            else if (cells.get(j).getBall().getAction() != Actions.NOTHING) return false;
-        }
-        return true;
-
-
-    }
 
     public Integer getIndexOfEmptyCell(List<Cell> cells) {
         for (int i = 0; i < cells.size(); i++) {
@@ -73,21 +61,25 @@ public class Field implements Cloneable {
     }
 
     public void algorithm(Field field) {
+        System.out.println("\nNEW BRANCH");
         Utility.canMove(field);
         for (int i = 0; i < field.getCells().size(); i++) {
             System.out.println("///////////////////////////////");
             if (field.getCells().get(i).getBall() != null && field.getCells().get(i).getBall().getAction() != Actions.NOTHING) {
+                // output action
                 System.out.println(field.getCells().get(i).getBall().getAction());
-//                field.getCells().forEach(System.out::println);
-//                System.out.println("//////////////////////////////");
+                // clone current field
                 Field clone = field.clone();
-                clone.getCells().forEach(System.out::println);
+                clone.getCells().forEach(System.out::print);
+                // swap empty cell and cell with a ball
                 swapBalls(clone.getCells(), i, clone.getCells().get(i).getBall().getAction().returnTargetCell(i));
                 System.out.println("---------------------------------");
-                clone.getCells().forEach(System.out::println);
+                clone.getCells().forEach(System.out::print);
+
                 if (success(clone)){
-                    System.out.println("СУКСССССУУУУУУУУСССС");
+                    System.out.println("SUCCESS");
                 }
+                // recursion
                 algorithm(clone);
             }
         }
@@ -95,19 +87,15 @@ public class Field implements Cloneable {
 
     }
 
-    boolean success(Field field) {
-        if (field.getCells().get(0).getBall() != null && field.getCells().get(0).getBall().getColor().equals(Color.WHITE) &&
+    private boolean success(Field field) {
+        return field.getCells().get(0).getBall() != null && field.getCells().get(0).getBall().getColor().equals(Color.WHITE) &&
                 field.getCells().get(1).getBall() != null && field.getCells().get(1).getBall().getColor().equals(Color.WHITE) &&
                 field.getCells().get(2).getBall() != null && field.getCells().get(2).getBall().getColor().equals(Color.WHITE) &&
                 field.getCells().get(3).getBall() == null &&
                 field.getCells().get(4).getBall() != null && field.getCells().get(4).getBall().getColor().equals(Color.BLACK) &&
                 field.getCells().get(5).getBall() != null && field.getCells().get(5).getBall().getColor().equals(Color.BLACK) &&
                 field.getCells().get(6).getBall() != null && field.getCells().get(6).getBall().getColor().equals(Color.BLACK) &&
-                field.getCells().get(7).getBall() != null && field.getCells().get(7).getBall().getColor().equals(Color.BLACK)
-        ){
-            return true;
-        }
-        return false;
+                field.getCells().get(7).getBall() != null && field.getCells().get(7).getBall().getColor().equals(Color.BLACK);
     }
 }
 
