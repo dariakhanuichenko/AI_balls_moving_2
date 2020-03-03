@@ -8,14 +8,14 @@ public class Main {
         field.getCells().forEach(System.out::println);
 
         System.out.println("--------------CLONE-----------------------");
-       Utility.canMove(field.getCells());
+//       Utility.canMove(field.getCells());
 //        Field clone = field.clone();
 //        clone.getCells().forEach(System.out::println);
 //        System.out.println("--------------Swap-----------------------");
 //        field.swapBalls(field.getCells(), 4, 7);
 //        field.getCells().forEach(System.out::println);
 
-        field.getNextMove(0,field);
+        field.algorithm(field);
 
 
     }

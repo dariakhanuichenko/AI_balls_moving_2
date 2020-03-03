@@ -3,14 +3,14 @@ package ua.kpi;
 public class Cell implements Cloneable {
 
     private Ball ball;
-    private Integer index;
+//    private Integer index;
 
     public Cell() {
     }
 
-    public Cell(Ball ball, Integer index) {
+    public Cell(Ball ball) {
         this.ball = ball;
-        this.index = index;
+//        this.index = index;
     }
 
     public Ball getBall() {
@@ -21,13 +21,13 @@ public class Cell implements Cloneable {
         this.ball = ball;
     }
 
-    public Integer getIndex() {
-        return index;
-    }
+//    public Integer getIndex() {
+//        return index;
+//    }
 
-    public void setIndex(Integer index) {
-        this.index = index;
-    }
+//    public void setIndex(Integer index) {
+//        this.index = index;
+//    }
 
     public boolean isEmpty() {
         return ball == null;
@@ -37,10 +37,9 @@ public class Cell implements Cloneable {
     @Override
     public String toString() {
         String str = "Cell{";
-        if (ball != null)
-            str += "ball=" + ball.toString();
-        str += ", index=" + index +
-                '}';
+        if (ball != null) str += "ball=" + ball.toString();
+//        str += ", index=" + index +
+                str += '}';
         return str;
     }
 
@@ -50,9 +49,9 @@ public class Cell implements Cloneable {
         try {
             clone = (Cell) super.clone();
             if (this.getBall() == null) {
-                clone = new Cell(null, this.getIndex());
+                clone = new Cell(null);
             } else {
-                clone = new Cell(this.getBall().clone(), this.getIndex());
+                clone = new Cell(this.getBall().clone());
             }
         } catch (CloneNotSupportedException e) {
             System.out.println(e);

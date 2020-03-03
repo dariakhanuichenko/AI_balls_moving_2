@@ -1,26 +1,25 @@
 package ua.kpi;
 
-import java.util.List;
-
 public class Utility {
-    public static List<Cell> canMove(List<Cell> cells) {
-        cells.forEach(cell -> {
-            if (cell.getBall() != null) {
-                if (cell.getBall().getColor().equals(Color.WHITE)) {
-                    if (cell.getIndex() - 1 >= 0 && cells.get(cell.getIndex() - 1).isEmpty()) {
-                        cell.getBall().setAction(Actions.WHITE_LEFT_1);
-                    } else if (cell.getIndex() - 2 >= 0 && cells.get(cell.getIndex() - 2).isEmpty()) {
-                        cell.getBall().setAction(Actions.WHITE_LEFT_2);
-                    }else cell.getBall().setAction(Actions.NOTHING);
-                } else if (cell.getBall().getColor().equals(Color.BLACK)) {
-                    if (cell.getIndex() + 1 < cells.size() && cells.get(cell.getIndex() + 1).isEmpty()) {
-                        cell.getBall().setAction(Actions.BLACK_RIGHT_1);
-                    } else if (cell.getIndex() + 2 < cells.size() && cells.get(cell.getIndex() + 2).isEmpty()) {
-                        cell.getBall().setAction(Actions.BLACK_RIGHT_2);
-                    }else cell.getBall().setAction(Actions.NOTHING);
+    public static void canMove(Field field) {
+        for (int i = 0; i < field.getCells().size(); i++) {
+
+            if (field.getCells().get(i).getBall() != null) {
+                if (field.getCells().get(i).getBall().getColor().equals(Color.WHITE)) {
+                    if (i - 1 >= 0 && field.getCells().get(i - 1).isEmpty()) {
+                        field.getCells().get(i).getBall().setAction(Actions.WHITE_LEFT_1);
+                    } else if (i - 2 >= 0 && field.getCells().get(i - 2).isEmpty()) {
+                        field.getCells().get(i).getBall().setAction(Actions.WHITE_LEFT_2);
+                    } else field.getCells().get(i).getBall().setAction(Actions.NOTHING);
+                }
+                if (field.getCells().get(i).getBall().getColor().equals(Color.BLACK)) {
+                    if (i + 1 < field.getCells().size() && field.getCells().get(i + 1).isEmpty()) {
+                        field.getCells().get(i).getBall().setAction(Actions.BLACK_RIGHT_1);
+                    } else if (i + 2 < field.getCells().size() && field.getCells().get(i + 2).isEmpty()) {
+                        field.getCells().get(i).getBall().setAction(Actions.BLACK_RIGHT_2);
+                    } else field.getCells().get(i).getBall().setAction(Actions.NOTHING);
                 }
             }
-        });
-        return cells;
+        }
     }
 }
