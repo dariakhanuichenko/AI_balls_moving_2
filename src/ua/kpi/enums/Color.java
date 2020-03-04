@@ -1,4 +1,4 @@
-package ua.kpi;
+package ua.kpi.enums;
 
 public enum Color {
     WHITE,

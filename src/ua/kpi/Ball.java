@@ -1,5 +1,8 @@
 package ua.kpi;
 
+import ua.kpi.enums.Actions;
+import ua.kpi.enums.Color;
+
 public class Ball implements Cloneable {
 
     private Color color;

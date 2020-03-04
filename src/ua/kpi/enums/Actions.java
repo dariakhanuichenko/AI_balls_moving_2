@@ -1,4 +1,4 @@
-package ua.kpi;
+package ua.kpi.enums;
 
 import com.sun.org.apache.regexp.internal.RE;
 

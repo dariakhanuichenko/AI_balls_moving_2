@@ -1,5 +1,7 @@
 package ua.kpi;
 
+import ua.kpi.enums.Color;
+
 public class Cell implements Cloneable {
 
     private Ball ball;
@@ -27,16 +29,13 @@ public class Cell implements Cloneable {
 
     @Override
     public String toString() {
-       String str ="";/*= "Cell{";
-        if (ball != null) str += "ball=" + ball.toString();
-                str += '}';*/
-        if( ball==null)
+       String str = "";
+        if( ball == null)
             str ="_";
             else if( ball.getColor().equals(Color.WHITE))
             str= "\u26AA";
         else if (ball.getColor().equals(Color.BLACK))
             str="\u26AB";
-
         return str;
     }
 
