@@ -2,11 +2,19 @@ package ua.kpi;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 
 public class Field implements Cloneable {
 
     private List<Cell> cells;
+
+    public List<Field> getSuccessStack() {
+        return successStack;
+    }
+
+    private List<Field> successStack = new ArrayList<>();
 
     public List<Cell> getCells() {
         return cells;
@@ -26,6 +34,7 @@ public class Field implements Cloneable {
         cells.add(new Cell(new Ball(Color.WHITE, false, Actions.NOTHING)));
         cells.add(new Cell(new Ball(Color.WHITE, false, Actions.NOTHING)));
         cells.add(new Cell(new Ball(Color.WHITE, false, Actions.NOTHING)));
+
     }
 
     @Override
@@ -33,6 +42,7 @@ public class Field implements Cloneable {
         Field clone = null;
         try {
             clone = (Field) super.clone();
+            clone.successStack = new ArrayList<>();
             clone.setCells(new ArrayList<>(8));
             for (Cell cell : cells) {
                 clone.getCells().add(cell.clone());
@@ -60,31 +70,39 @@ public class Field implements Cloneable {
         return -1;
     }
 
-    public void algorithm(Field field) {
+    public boolean algorithm(Field field, int counter) {
+        counter++;
         System.out.println("\nNEW BRANCH");
         Utility.canMove(field);
         for (int i = 0; i < field.getCells().size(); i++) {
-            System.out.println("///////////////////////////////");
+//            System.out.println("///////////////////////////////");
             if (field.getCells().get(i).getBall() != null && field.getCells().get(i).getBall().getAction() != Actions.NOTHING) {
                 // output action
-                System.out.println(field.getCells().get(i).getBall().getAction());
+//                System.out.println(field.getCells().get(i).getBall().getAction().getStringWithIndex(i));
                 // clone current field
                 Field clone = field.clone();
-                clone.getCells().forEach(System.out::print);
+//                clone.getCells().forEach(System.out::print);
                 // swap empty cell and cell with a ball
                 swapBalls(clone.getCells(), i, clone.getCells().get(i).getBall().getAction().returnTargetCell(i));
-                System.out.println("---------------------------------");
-                clone.getCells().forEach(System.out::print);
+//                System.out.println("\n---------------------------------");
 
                 if (success(clone)){
-                    System.out.println("SUCCESS");
+//                    System.out.println("\ncounter = " + counter);
+//                    System.out.println("SUCCESS");
+//                    counter=0;
+                    this.successStack.add(clone);
+                    return true;
                 }
-                // recursion
-                algorithm(clone);
-            }
-        }
-        System.out.println("///////////////////////////////");
 
+//                algorithm(clone, counter);
+                if (algorithm(clone, counter)){
+                    this.successStack.add(clone);
+                    return true;
+                };
+                                // recursion
+            }}
+//        System.out.println("///////////////////////////////");
+        return false;
     }
 
     private boolean success(Field field) {
@@ -96,6 +114,12 @@ public class Field implements Cloneable {
                 field.getCells().get(5).getBall() != null && field.getCells().get(5).getBall().getColor().equals(Color.BLACK) &&
                 field.getCells().get(6).getBall() != null && field.getCells().get(6).getBall().getColor().equals(Color.BLACK) &&
                 field.getCells().get(7).getBall() != null && field.getCells().get(7).getBall().getColor().equals(Color.BLACK);
+    }
+
+    public List<Field> getResultSuccessStack() {
+        successStack.add(this);
+        Collections.reverse(successStack);
+        return successStack;
     }
 }
 

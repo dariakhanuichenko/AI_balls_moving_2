@@ -35,4 +35,19 @@ public enum Actions {
     };
 
     public abstract int returnTargetCell(int start);
+
+    public String getStringWithIndex(int i) {
+        i++;
+        switch (this){
+            case WHITE_LEFT_1:
+                return "<- " + i;
+            case WHITE_LEFT_2:
+                return "<-- " + i;
+            case BLACK_RIGHT_1:
+                return i + " ->";
+            case BLACK_RIGHT_2:
+                return i + " -->";
+            default: throw new RuntimeException("opoops");
+        }
+    }
 }

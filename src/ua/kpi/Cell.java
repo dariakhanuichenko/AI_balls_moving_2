@@ -33,9 +33,9 @@ public class Cell implements Cloneable {
         if( ball==null)
             str ="_";
             else if( ball.getColor().equals(Color.WHITE))
-            str="O";
+            str= "\u26AA";
         else if (ball.getColor().equals(Color.BLACK))
-            str="*";
+            str="\u26AB";
 
         return str;
     }
