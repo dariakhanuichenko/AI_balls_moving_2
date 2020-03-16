@@ -79,7 +79,6 @@ public class Field implements Cloneable {
 
     public boolean algorithm(Field field, int counter, int maxNumber) {
         counter++;
-        if( counter <=maxNumber){
         // check actions for ball in cell current field
         Utility.canMove(field);
         for (int i = 0; i < field.getCells().size(); i++) {
@@ -93,6 +92,12 @@ public class Field implements Cloneable {
 
                 // if success -> add current field to stack
                 if (success(clone)) {
+                    // if succeed by fewer steps
+                    // change max Number
+                    if( counter < maxNumber) {
+                        counter = maxNumber;
+                    }
+                    this.successStack = new ArrayList<>();
                     this.successStack.add(clone);
                     return true;
                 }
@@ -104,7 +109,8 @@ public class Field implements Cloneable {
                 }
 
             }
-        }}
+        }
+//    }
 
         return false;
     }
