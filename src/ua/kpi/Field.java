@@ -95,7 +95,7 @@ public class Field implements Cloneable {
                     // if succeed by fewer steps
                     // change max Number
                     if( counter < maxNumber) {
-                        counter = maxNumber;
+                        maxNumber = counter;
                     }
                     this.successStack = new ArrayList<>();
                     this.successStack.add(clone);

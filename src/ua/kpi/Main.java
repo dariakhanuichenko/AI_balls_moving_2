@@ -9,7 +9,7 @@ public class Main {
         Field field = new Field();
 
         System.out.println("\n--------------START-----------------------");
-        field.algorithm(field, 0,20);
+        field.algorithm(field, 0,Integer.MAX_VALUE);
         List<Field> algorithm = field.getResultSuccessStack();
         System.out.println("Понадобилось " + (algorithm.size() - 1) + " шагов");
         System.out.println("Пошаговое объяснение для тех, кто не может решить сам:");
