@@ -49,11 +49,11 @@ public class Algorithm {
         return counter;
     }
 
-    private int makeEmptyAndMove(List<Jar> clone, int counter, int i) {
+    private int makeEmptyAndMove(List<Jar> clone, int counter, int i, boolean flag) {
         clone.get(i).makeEmpty();
         counter++;
 
-        move(clone);
+        move(clone, flag);
         counter++;
         print(clone);
         return counter;
@@ -76,7 +76,7 @@ public class Algorithm {
             do {
                 //перелить с большей в меншую
                 if (clone.get(0).getCapasity().isFull(clone.get(0)) || clone.get(1).getCapasity().isFull(clone.get(1))) {
-                    move(clone);
+                    move(clone, flag);
                     counter++;
                     print(clone);
 
@@ -89,13 +89,13 @@ public class Algorithm {
                         if (clone.get(0).getCapasity().isFull(clone.get(0))) {
                             //— опорожнить меньший сосуд, вылив воду в раковину;
 
-                            counter = makeEmptyAndMove(clone, counter, 0);
+                            counter = makeEmptyAndMove(clone, counter, 0, flag);
                             break;
                         } else break;
                     } else {
                         if (clone.get(1).getCapasity().isFull(clone.get(1))) {
                             //— опорожнить меньший сосуд, вылив воду в раковину;
-                            counter = makeEmptyAndMove(clone, counter, 1);
+                            counter = makeEmptyAndMove(clone, counter, 1, flag);
 
                             break;
                         } else break;
@@ -105,13 +105,13 @@ public class Algorithm {
                         if (clone.get(0).getCapasity().isFull(clone.get(0))) {
                             //— опорожнить больший сосуд, вылив воду в раковину;
 
-                            counter = makeEmptyAndMove(clone, counter, 0);
+                            counter = makeEmptyAndMove(clone, counter, 0, flag);
                             break;
                         } else break;
                     } else {
                         if (clone.get(1).getCapasity().isFull(clone.get(1))) {
                             //— опорожнить больший сосуд, вылив воду в раковину;
-                            counter = makeEmptyAndMove(clone, counter, 1);
+                            counter = makeEmptyAndMove(clone, counter, 1, flag);
 
                             break;
                         } else break;
@@ -123,7 +123,7 @@ public class Algorithm {
         return counter;
     }
 
-    public void move(List<Jar> jars) {
+    public void move(List<Jar> jars, boolean flag) {
         if (jars.size() == 2) {
             if (jars.get(0).getCapasity().get() < jars.get(1).getCapasity().get() && jars.get(0).getIsFilled() != 0) {
                 moveFromSmaller(jars.get(0), jars.get(1));
@@ -132,10 +132,10 @@ public class Algorithm {
                 moveFromSmaller(jars.get(1), jars.get(0));
             }
             if (jars.get(0).getCapasity().get() > jars.get(1).getCapasity().get() && jars.get(1).getIsFilled() != 0) {
-                moveFromBigger(jars.get(1), jars.get(0));
+                moveFromBigger(jars.get(1), jars.get(0), flag);
             }
-            if (jars.get(1).getCapasity().get() > jars.get(0).getCapasity().get() && jars.get(0).getIsFilled() != 0) {
-                moveFromBigger(jars.get(0), jars.get(1));
+            if (jars.get(1).getCapasity().get() > jars.get(0).getCapasity().get() ) {
+                moveFromBigger(jars.get(0), jars.get(1), flag);
             }
 
         }
@@ -153,9 +153,9 @@ public class Algorithm {
         }
     }
 
-    public void moveFromBigger(Jar smaller, Jar bigger) {
+    public void moveFromBigger(Jar smaller, Jar bigger, boolean flag) {
 //        if(  smaller.getIsFilled() == 0){
-        if (!bigger.getCapasity().isFull(bigger)) {
+        if (flag) {
             int additional = 3 - smaller.getIsFilled();
 
             if (additional > bigger.getIsFilled()) {
