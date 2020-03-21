@@ -2,9 +2,7 @@ package ua.kpi.enums;
 
 import ua.kpi.Jar;
 
-import java.util.List;
-
-public enum Capasity {
+public enum Capaсity {
     THREE_LITER {
         @Override
         public boolean isFull(Jar jar) {
@@ -38,9 +36,12 @@ public enum Capasity {
         }
     };
 
+    // проверка заполнено ли ведро
     public abstract boolean isFull(Jar jar);
 
+    // заполнить ведро поностью
     public abstract void fillUp(Jar jar);
 
+    // получить объем ведра
     public abstract int get();
 }

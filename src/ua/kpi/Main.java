@@ -1,5 +1,8 @@
 package ua.kpi;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -8,7 +11,8 @@ public class Main {
         int maxNumberOfSteps = Integer.MAX_VALUE;
 
         Algorithm algorithm = new Algorithm();
-        System.out.println(algorithm.algorithmBigger(algorithm.getJars(),  maxNumberOfSteps, true));
-        System.out.println(algorithm.algorithmBigger(algorithm.getJars(),  maxNumberOfSteps, false));
+        List<List<Jar>> result = new LinkedList<>();
+       algorithm.start(algorithm, result,maxNumberOfSteps);
+
     }
 }

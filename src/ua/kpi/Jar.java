@@ -1,17 +1,17 @@
 package ua.kpi;
 
-import ua.kpi.enums.Capasity;
+import ua.kpi.enums.Capaсity;
 
 public class Jar {
     private int isFilled;
-    private Capasity capasity;
+    private Capaсity capaсity;
 
     public Jar() {
     }
 
-    public Jar(int isFilled, Capasity capasity) {
+    public Jar(int isFilled, Capaсity capaсity) {
         this.isFilled = isFilled;
-        this.capasity = capasity;
+        this.capaсity = capaсity;
     }
 
     public int getIsFilled() {
@@ -22,12 +22,12 @@ public class Jar {
         this.isFilled = isFilled;
     }
 
-    public Capasity getCapasity() {
-        return capasity;
+    public Capaсity getCapaсity() {
+        return capaсity;
     }
 
-    public void setCapasity(Capasity capasity) {
-        this.capasity = capasity;
+    public void setCapaсity(Capaсity capaсity) {
+        this.capaсity = capaсity;
     }
 
     public  void makeEmpty() {
@@ -38,7 +38,7 @@ public class Jar {
     public String toString() {
         return "Jar{" +
                 "isFilled=" + isFilled +
-                ", capasity=" + capasity +
+                ", capasity=" + capaсity +
                 '}';
     }
 
@@ -47,7 +47,7 @@ public class Jar {
         Jar clone = null;
 //        try {
 //            clone = (Jar) super.clone();
-            clone = new Jar (this.getIsFilled(), this.getCapasity());
+            clone = new Jar (this.getIsFilled(), this.getCapaсity());
 //        } catch (CloneNotSupportedException e) {
 //            System.out.println(e);
 //        }
