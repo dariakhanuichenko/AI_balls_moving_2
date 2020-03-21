@@ -9,7 +9,8 @@ public class Main {
         int maxNumberOfSteps = Integer.MAX_VALUE;
 
         Algorithm algorithm = new Algorithm();
-        System.out.println(algorithm.algorithmBigger(algorithm.getJars(), maxNumberOfSteps));
+        System.out.println(algorithm.algorithmBigger(algorithm.getJars(),  maxNumberOfSteps, true));
+        System.out.println(algorithm.algorithmBigger(algorithm.getJars(),  maxNumberOfSteps, false));
 
 //        field.algorithm(field, 0,Integer.MAX_VALUE);
 //        List<Field> algorithm = field.getResultSuccessStack();
